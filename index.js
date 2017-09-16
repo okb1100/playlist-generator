@@ -74,6 +74,6 @@ app.get('/sub/:sub', cache(60 * 10), filter(), (req, res) => {
     res.send(JSON.stringify(req.links, null, 4));
 });
 
-app.listen(app.get(port), () => {
+app.listen(app.get('port'), () => {
     console.log('listening on ' + app.get('port'));
 });
