@@ -1,6 +1,6 @@
 var app = angular.module('playlistApp', []);
 app.controller('playlistController', ($scope, $http, $sce) => {
-    $scope.sub = 'music';
+    $scope.sub = 'Music';
     $scope.sort = 'hot';
     $scope.load = () => {
         $http
@@ -24,7 +24,7 @@ app.controller('playlistController', ($scope, $http, $sce) => {
             $scope.urlIndex++;
         } else if (to === 'prev' && $scope.urlIndex > 0) {
             $scope.urlIndex--;
-        } else {
+        } else if (typeof to === 'number') {
             $scope.urlIndex = to;
         }
     };

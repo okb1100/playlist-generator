@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Hello!</title>
+    <title>Playlist Generator</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
@@ -11,19 +11,57 @@
 
 <body ng-app="playlistApp" ng-controller="playlistController" ng-init="urlIndex=0;load()">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row nav">
             <div class="twelve columns">
-                <div class="u-pull-left">
+                <h5 class="brand">Playlist Generator
+                    <a class="github-button" href="https://github.com/okb1100/playlist-generator" data-size="large" data-show-count="true" aria-label="Star okb1100/playlist-generator on GitHub">Star</a>
 
-                    <input ng-model="sub" type="text" placeholder="subreddit">
-                    <select ng-model="sort">
-                            <option value="hot">hot</option>
-                            <option value="top">top</option>
-                            <option value="new">new</option>
-                        </select>
-                    <button ng-click="load()" class="button button-primary">get</button>
-                </div>
+                </h5>
                 <div class="u-pull-right">
+                    <input ng-model="sub" type="text" placeholder="subreddit" required spellcheck="false">
+                    <select ng-model="sort">
+                            <option value="hot">Hot</option>
+                            <option value="top">Top</option>
+                            <option value="new">New</option>
+                        </select>
+                    <button ng-click="load()" class="button button-primary">GET</button>
+                </div>
+            </div>
+        </div>
+        <div class="row tut" ng-hide="hideTut">
+            <div class="offset-by-one ten columns">
+                <h5>How to use?</h5>
+                <p>
+                    Just type a genres subreddit name without /r/ <code>(i.e. jazz, rock, rap)</code> on the input and click
+                    GET, I'll get the YouTube links and create a playlist for you :)
+                </p>
+                <h6>Some good places to start;</h6>
+                <p>
+                    <ul>
+                        <li>
+                            <a href="https://www.reddit.com/r/Music/">/r/Music</a>
+                        </li>
+                        <li>
+                            <a href="https://www.reddit.com/r/listentothis/">/r/listentothis</a>
+                        </li>
+                        <li>
+                            <a href="https://www.reddit.com/r/unheardof/">/r/unheardof</a>
+                        </li>
+                    </ul>
+
+                </p>
+                <p>
+                    <a href="https://github.com/okb1100/playlist-generator">Check out the Github repo</a>
+                </p>
+                <p>
+                    <button class="button button-primary u-center" ng-click="hideTut = true">Got it!</button>
+                </p>
+            </div>
+        </div>
+        <div class="row u-padding-10">
+            <div class="six columns">
+                <iframe width="100%" height="50%" ng-src="{{urlList[urlIndex].url}}"></iframe>
+                <div class="u-padding-10">
                     <button ng-click="skip('prev')" class="button button-primary">
                         Previous
                     </button>
@@ -32,15 +70,10 @@
                     </button>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="six columns">
-                <iframe width="100%" height="50%" ng-src="{{urlList[urlIndex].url}}"></iframe>
-            </div>
             <div class="six columns">
                 <ul class="song-list">
                     <li class="list" ng-repeat="url in urlList" ng-index="{{$index}}" ng-click="skip($index)">
-                        <span class="current button" ng-if="$index === urlIndex"></span> {{url.title}}
+                        <span class="current button" ng-if="$index === urlIndex"></span> [{{$index+1}}] {{url.title}}
                     </li>
                 </ul>
             </div>
@@ -48,6 +81,7 @@
 
     </div>
     <script src="js/main.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
 </html>

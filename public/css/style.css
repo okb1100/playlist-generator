@@ -1,25 +1,48 @@
 body {
-    overflow: hidden;
+    overflow-x: hidden;
 }
 iframe {
     border: none;
 }
 ul.song-list {
     overflow-y: scroll;
-    height: 100vh;
+    height: 500px;
+}
+ul.song-list::-webkit-scrollbar {
+    background-color: transparent;
+    width: 5px;
+}
+ul.song-list::-webkit-scrollbar-thumb {
+    background-color: #1eaedb;
+    border-radius: 5px;
 }
 li.list {
     position: relative;
     cursor: pointer;
     list-style-type: none;
 }
+.tut,
+.nav {
+    border-bottom: 1px solid #cecece;
+}
 span.current {
     position: absolute;
     display: inline-block;
-    background-color: #1eaedb;
-    border-color: #1eaedb;
-    border-radius: 5px;
+    border-radius: 0;
+    border: none;
+    background-color: #78defd;
     z-index: -1;
     width: 90%;
     height: 100%;
+}
+.u-padding-10 {
+    padding: 10px;
+}
+h5.brand {
+    display: inline-block;
+}
+h5.brand > iframe {
+    position: relative;
+    top: 5px;
+    margin-left: 10px;
 }
