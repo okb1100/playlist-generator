@@ -1,0 +1,25 @@
+body {
+    overflow: hidden;
+}
+iframe {
+    border: none;
+}
+ul.song-list {
+    overflow-y: scroll;
+    height: 100vh;
+}
+li.list {
+    position: relative;
+    cursor: pointer;
+    list-style-type: none;
+}
+span.current {
+    position: absolute;
+    display: inline-block;
+    background-color: #1eaedb;
+    border-color: #1eaedb;
+    border-radius: 5px;
+    z-index: -1;
+    width: 90%;
+    height: 100%;
+}
