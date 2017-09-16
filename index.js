@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 var request = require('request');
 var mcache = require('memory-cache');
-
+app.set('port', process.env.PORT || 3000);
 var cache = duration => {
     return (req, res, next) => {
         req.query.sort = req.query.sort || 'hot';
@@ -64,7 +64,6 @@ var filter = () => {
     };
 };
 
-app.port = 3000;
 app.use(express.static('public'));
 
 app.get('/', cache(60), (req, res) => {
@@ -75,6 +74,6 @@ app.get('/sub/:sub', cache(60 * 10), filter(), (req, res) => {
     res.send(JSON.stringify(req.links, null, 4));
 });
 
-app.listen(app.port, () => {
-    console.log('listening on ' + app.port);
+app.listen(app.get(port), () => {
+    console.log('listening on ' + app.get('port'));
 });
