@@ -1,22 +1,19 @@
-var app = angular.module('playlistApp', []);
-app.controller('playlistController', ($scope, $http, $sce) => {
+var app = angular.module('playlistApp', ['youtube-embed']);
+app.controller('playlistController', ($scope, $http) => {
+    $scope.playerVars = {
+        controls: 1,
+        autoplay: 1
+    };
     $scope.sub = 'Music';
     $scope.sort = 'hot';
     $scope.load = () => {
         $http
             .get('/sub/' + $scope.sub + '?sort=' + $scope.sort)
             .then(function(response) {
-                $scope.urlList = new Array();
-                response.data.forEach(function(element) {
-                    let url = $sce.trustAsResourceUrl(
-                        'https://youtube.com/embed/' + element.url
-                    );
-                    element.url = url;
-                    $scope.urlList.push(element);
-                });
+                $scope.urlList = response.data;
             })
             .catch(function(err) {
-                alert(err);
+                console.error(err);
             });
     };
     $scope.skip = to => {
@@ -28,4 +25,7 @@ app.controller('playlistController', ($scope, $http, $sce) => {
             $scope.urlIndex = to;
         }
     };
+    $scope.$on('youtube.player.ended', function($event, player) {
+        $scope.urlIndex++;
+    });
 });

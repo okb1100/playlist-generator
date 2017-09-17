@@ -4,7 +4,9 @@
     <title>Playlist Generator</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="js/angular-youtube-embed.min.js"></script>
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -60,11 +62,13 @@
         </div>
         <div class="row u-padding-10">
             <div class="six columns">
-                <iframe width="100%" height="50%" ng-src="{{urlList[urlIndex].url}}"></iframe>
+                <youtube-video player="musicPlayer" video-id="urlList[urlIndex].url" player-vars="playerVars"></youtube-video>
                 <div class="u-padding-10">
                     <button ng-click="skip('prev')" class="button button-primary">
                         Previous
                     </button>
+                    <button class="button button-primary" ng-click="musicPlayer.pauseVideo()">Pause</button>
+                    <button class="button button-primary" ng-click="musicPlayer.playVideo()">Play</button>
                     <button ng-click="skip('next')" class="button button-primary">
                         Next
                     </button>
