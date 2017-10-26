@@ -12,7 +12,7 @@
 
 #### Quick test
 
-Go to [this page](https://playlist-generator-okb1100.herokuapp.com) to test it immidiately.
+Go to [this page](https://playlist-generator-okb1100.herokuapp.com) to test it immediately.
 
 #### Run it yourself
 You need `node.js` and `npm` to run `playlist-generator`.
